@@ -1,0 +1,74 @@
+// event delagation ---a technique that allows you to manage events for multiple elements more effiiently by using a
+single event listener on a comman parent element rather than on ach individual child element
+
+// types of event delagation
+// 1. improves performannce
+// 2. handles dynamic elements
+// 3. cleaner code
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outerDiv {
+            border: 10px solid red;
+            padding: 10px;
+            width: 0 auto;
+            text-align: center;
+            margin: 10px
+        }
+
+        #midDiv {
+            border: 10px solid green;
+            padding: 10px;
+            width: 0 auto;
+            text-align: center;
+            margin: 10px
+        }
+
+        #innerDiv {
+            border: 10px solid yellow;
+            padding: 10px;
+            width: 0 auto;
+            text-align: center;
+            margin: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul id="itemList">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+        </ul>
+    </div>
+
+    <script>
+        // const item = document.getElementById('itemList')
+        // item.addEventListener('click', function (e)  {
+        //     if(e.target.tagName === 'LI'){
+        //         console.log("CLICKED"), e.target.textContent
+        //     }
+        // })
+        const item  = document.querySelectorAll('#itemList li')
+
+        item.forEach(ite => {
+            ite.addEventListener('click', function () {
+                console.log("CLICKED", this.textContent
+
+                )
+                
+            })
+        })
+
+    </script>
+
+</body>
+
+</html>
