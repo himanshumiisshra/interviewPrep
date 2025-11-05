@@ -1,47 +1,55 @@
-// async -- declaring function with makes it to return a promise
-// await. -- it pauses the execution of the code until a promise is resolved or rejected
+// async -- declaeing a function with async makes it return a promise
+
+// await -- it pauses the execution of the code untill the promise is resolved or rejected
 
 // async function fetchData() {
-//     try{
+//     try {
 //         const response = await fetch(`https://jsonplaceholder.typicode.com/todos/1`);
 //         const data = await response.json();
-//         console.log(data)
-//     }catch(error) {
-//         console.error("ERROR: ", error)
+//         console.log("DATA:", data)
+        
+//     } catch (error) {
+//         console.error("Error:", error)
+        
 //     }
 // }
+
 // fetchData();
 
-// call -- invokes the function immediately, with this set of arguments and accepts argument one by one
-// function cook(in1, ing2) {
-//     console.log(`${this.name} is having meals with ${in1} and ${ing2}`)
+// call -- invokes the function immediayely , with this set of arguments and accepts argument one by one
+// function cook(ing1, ing2) {
+//     console.log(`${this.name} is having meals with ${ing1} adn ${ing2}`)
 // }
 
-// const himanshu = {name: "Himanshu"};
+// const himanshu = {name: "Himanshu"}
 
-// cook.call(himanshu, 'gg','ashish')
-// apply-- invokes the function immediately , with this set of arguments and accepts arguments in the form os array
+// cook.call(himanshu, 'gg', 'garvit')
 
-// cook.apply(himanshu, ['gg','garvit'])
-//bind -- return a new function with set of arguments  and doesnot invoke function immediately
+//apply -- invokes function immediately , with this set of arguments and accepts arguments as an array
 
-// const cookForHimanshu = cook.bind(himanshu, 'gg','ashi')
-// cookForHimanshu()
+// cook.apply(himanshu, ['gg', 'garvit'])
 
-// closure -- in javascript closure is a feature where we can acess a variable even after the outer function has finished executed as they rememeber the environment in which they where created
+// bind -- returns a new function this set of arguments but doesn't invokes immediately
 
-// function outerFunction () {
-//     let outerVariable = 'This is from outer variable'
+// const cookForHimanshu = cook.bind(himanshu, 'gg', 'garvit');
+
+// cookForHimanshu();
+
+
+// in javascript closure is a function that remebers the environment in which it was created even after the outer function has finished executing
+
+// function outerFunction() {
+//     let outerVariable = 'This is from outside!';
 
 //     function innerFunction() {
 //         console.log(outerVariable)
 //     }
 
-//     return innerFunction;
+//     return innerFunction
 // }
 
-// const closureFunction = outerFunction()
-// closureFunction()
+// const closureFunction = outerFunction();
+// closureFunction();
 
 // function counter() {
 //     let count = 0;
@@ -51,18 +59,19 @@
 //             count++;
 //             return count;
 //         },
-//         decrement: function() {
+//         decrement: function () {
 //             count--;
 //             return count;
 //         },
-//         displayCount: function() {
-//             const message = `current value of count is ${count}`
+
+//         displayCount: function () {
+//             let message  = `current count is ${count}`
 //             return message;
 //         }
 //     }
 // }
 
-// const myCounter = counter()
+// const myCounter = counter();
 // console.log(myCounter.increment());
 // console.log(myCounter.displayCount());
 // console.log(myCounter.increment());
@@ -70,68 +79,33 @@
 // console.log(myCounter.decrement());
 // console.log(myCounter.displayCount())
 
-// currying -- it involves breaking down a function that takes multiple arguments into a series of functions that takes one arfument each 
+// currying --it is used in javascript to break down complex function calls into smaller more manageable steps.it transforms a function with multiple arguments into a series of functions, each taking a single argument
+// it converts a function with multiple parameters into sequence of functions
+// each function takes a single argument and returns another function untill all arguments are received
+// helps in functional programming by enabling functiion resuseability and composition 
 
-// function add(d) {
-//     return function (f) {
-//         return d * f;
+// function add(s) {
+//     return function (d) {
+//         return s * d
 //     }
 // }
+// const double = add(2);
+// console.log(double(9))
 
-// const multi = add(6)
-// console.log(multi(6)
+// const original = {name: "himanshu", address: {city:"Bhilwara"}}
 
-// const original = {name: "himanshu", addresss: {city: "bhilwara"}}
+// Object assign
 
-// const shallowCopy = Object.assign({} , original)
+// const shallowCopy = Object.assign({}, original);
 
-// shallowCopy.addresss.city = "gandu"
+// const shallowCopy = {...original};
+// shallowCopy.address.city = "New City";
+// console.log("Shallow Copy", shallowCopy)
+// console.log("Original", original)
 
-// console.log(original)
-// console.log(shallowCopy)
 
+// Deep Copy
 // const deepCopy = JSON.parse(JSON.stringify(original));
-// deepCopy.addresss.city = "gandu"
-// console.log(original)
-// console.log(deepCopy)
-
-//generator function -- a generator function is a special type of function that can be paused and resumed during ots execution, it allows generating a  sequence of values overtime. using the yield keyword.
-
-// function* infiniteSequence() {
-//     let num = 0;
-//     while(true) {
-//         yield num;
-//         num++
-//     }
-// }
-
-// const seq = infiniteSequence();
-// console.log(seq.next().value)
-// console.log(seq.next().value)
-//higher order function -- the function that can either takes a function  as an argument aor return a function as a result
-
-// const number = [1,2,3,4,5];
-// const double = number.map(function (num) {
-//     return num * 2;
-// })
-
-
-// console.log(double)
-
-// promise -- it handles asynchronous tasks in javascript by providing more readable and structured approach than callbacks or handling outputs
-
-const data = {name: "john", age: 30, city: "BHILWARA"}
-
-function fetchData () {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            reject(data)
-        }, 1000);
-    })
-}
-
-fetchData().then((data) => {
-    console.log(data)
-}).catch((err) => {
-    console.error(err)
-})
+// deepCopy.address.city = "new City";
+// console.log("Deep Copy", deepCopy);
+// console.log("Original", original)

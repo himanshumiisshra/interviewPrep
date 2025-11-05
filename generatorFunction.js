@@ -1,4 +1,5 @@
-// generator Function--A generator function is a special type of function that can be paused and resumed  during its execution. it allows generating a sequence of values overtime , using the yield keyword.
+// generator function --  A generator function is a special type of function that can be paused or resumed during its execution.It allows generating a sequence of values over time, using the yield function
+
 
 function* infiniteSequence(){
     let num = 0;

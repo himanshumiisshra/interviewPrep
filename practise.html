@@ -1,64 +1,6 @@
-// event bubbling --a propagation model where the events are handled from inner most element to outermost element
+// event bubbling -- a propagation model where the events are handled from inner most element to outermost element
 
 // event capturing --- a propagation model where the events are handled from outermost element to innermost element
-
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        #topDiv{
-            border: 10px solid red;
-            padding: 10px;
-            width: 0 auto;
-            text-align: center;;
-            margin: 10px
-
-        }
-        #midDiv{
-            border: 10px solid rgb(208, 255, 0);
-            padding: 10px;
-            width: 0 auto;
-            text-align: center;;
-            margin: 10px
-
-        }
-        #innerDiv{
-            border: 10px solid rgb(0, 255, 0);
-            padding: 10px;
-            width: 0 auto;
-            text-align: center;;
-            margin: 10px
-
-        }
-    </style>
-</head>
-<body>
-    <div id="topDiv"> outer Div
-        <div id="midDiv"> mid div
-            <div id="innerDiv">
-                inner div
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById("topDiv").addEventListener("click", function() {
-            console.log("outer DIV Clicked");
-        }, true);/// for event capturing provide default value of third parameter as true
-        document.getElementById("midDiv").addEventListener("click", function() {
-            console.log("Mid Div Clicked");
-        },true);
-        document.getElementById("innerDiv").addEventListener("click", function() {
-            console.log("Inner Div Clicked");
-        }, true);
-    </script>
-</body>
-</html> -->
-
 
 <!DOCTYPE html>
 <html lang="en">
