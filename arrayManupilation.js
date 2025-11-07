@@ -41,6 +41,22 @@ function removeDuplicates(arr) {
 
 console.log(removeDuplicates([1,2,2,3,4,4])); // [1,2,3,4]
 
+//alternative
+
+function removeDuplicates(arr) {
+    let i = 0;
+    for(let j = 1; j < arr.length; j++){
+        console.log("ARRAY:[i]", arr[i], "Array:[j]:", arr[j])
+        if(arr[i] !== arr[j]){
+            i++;
+            arr[i] = arr[j]
+        }
+    }
+    arr.length = i + 1;
+    return arr;
+}
+console.log(removeDuplicates([1,2,2,3,5,4,4]));
+
 
 // 3. Reverse an Array In-Place
 
@@ -59,6 +75,20 @@ function reverseArray(arr) {
 }
 
 console.log(reverseArray([1,2,3,4])); // [4,3,2,1]
+//alternative
+
+function reverseArrayRec(arr, left = 0, right = arr.length - 1) {
+    // Base condition: stop when left >= right
+    if (left >= right) return arr;
+
+    // Swap elements
+    [arr[left], arr[right]] = [arr[right], arr[left]];
+
+    // Recursive call, move pointers inward
+    return reverseArrayRec(arr, left + 1, right - 1);
+}
+
+console.log(reverseArrayRec([1, 2, 3, 4])); 
 
 
 // 4. Find the Missing Number
