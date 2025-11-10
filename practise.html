@@ -1,0 +1,99 @@
+// event bubbling -- a propagation model where the events are handled from inner most element to outermost element
+
+// event capturing --- a propagation model where the events are handled from outermost element to innermost element
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Bubbling & Capturing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #topDiv {
+      border: 10px solid red;
+      padding: 30px;
+      margin: 20px;
+    }
+
+    #midDiv {
+      border: 10px solid green;
+      padding: 30px;
+      margin: 20px;
+    }
+
+    #innerDiv {
+      border: 10px solid gold;
+      padding: 30px;
+      margin: 20px;
+    }
+
+    .highlight {
+      background-color: lightblue;
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <h2>Event Capturing and Bubbling Example</h2>
+  <p>Open the console and click the <b>Inner Div</b> to observe the event order.</p>
+
+  <div id="topDiv">
+    Outer Div
+    <div id="midDiv">
+      Middle Div
+      <div id="innerDiv">
+        Inner Div
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const topDiv = document.getElementById("topDiv");
+    const midDiv = document.getElementById("midDiv");
+    const innerDiv = document.getElementById("innerDiv");
+
+    // Utility function to briefly highlight clicked element
+    function highlight(element) {
+      element.classList.add("highlight");
+      setTimeout(() => element.classList.remove("highlight"), 300);
+    }
+
+    // ---------- Event Capturing (outer → inner) ----------
+    topDiv.addEventListener("click", (e) => {
+      console.log("Outer Div Capturing");
+      highlight(topDiv);
+    }, true);
+
+    midDiv.addEventListener("click", (e) => {
+      console.log("Mid Div Capturing");
+      highlight(midDiv);
+    }, true);
+
+    innerDiv.addEventListener("click", (e) => {
+      console.log("Inner Div Capturing");
+      highlight(innerDiv);
+    }, true);
+
+    // ---------- Event Bubbling (inner → outer) ----------
+    topDiv.addEventListener("click", (e) => {
+      console.log("Outer Div Bubbling");
+      highlight(topDiv);
+    }, false);
+
+    midDiv.addEventListener("click", (e) => {
+      console.log("Mid Div Bubbling");
+      highlight(midDiv);
+    }, false);
+
+    innerDiv.addEventListener("click", (e) => {
+      console.log("Inner Div Bubbling");
+      highlight(innerDiv);
+    }, false);
+  </script>
+</body>
+</html>
