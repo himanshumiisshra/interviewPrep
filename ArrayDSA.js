@@ -107,31 +107,35 @@ function sort012(arr) {
 // OPTIMAL SOLUTION (Using Dutch National Flag Algorithm (Checkout guide/dutch_national_flag_algo.md)) 
 // Time complexity - O(N);
 // Space complexity - O(1);
-function sort012Again(arr) {
+function sort(arr) {
     var _a, _b;
-    var low = 0; // Initialize a pointer for 0s at the beginning of the array
-    var mid = 0; // Initialize a pointer for 1s in the middle of the array
-    var high = arr.length; // Initialize a pointer for 2s at the end of the array
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[mid] === 0) { // If the current element is 0, move it to the low section
-            _a = [arr[mid], arr[low]], arr[low] = _a[0], arr[mid] = _a[1]; // Swap arr[low] and arr[mid]
-            low++; // Move the low pointer to the right
-            mid++; // Move the mid pointer to the right
-        }
-        if (arr[mid] === 1) { // If the current element is 1, it's in the correct place (mid)
-            mid++; // Move the mid pointer to the right
-        }
-        if (arr[mid] === 2) { // If the current element is 2, move it to the high section
-            _b = [arr[high], arr[mid]], arr[mid] = _b[0], arr[high] = _b[1]; // Swap arr[mid] and arr[high]
-            high--; // Move the high pointer to the left
+    var low = 0;
+    var mid = 0;
+    var high = arr.length - 1;
+
+    // Use a while loop to keep control over the 'mid' pointer
+    while (mid <= high) {
+        if (arr[mid] === 0) {
+            // Swap mid and low
+            _a = [arr[mid], arr[low]], arr[low] = _a[0], arr[mid] = _a[1];
+            low++;
+            mid++;
+        } else if (arr[mid] === 1) {
+            // Just move the pointer
+            mid++;
+        } else if (arr[mid] === 2) {
+            // Swap mid and high
+            _b = [arr[high], arr[mid]], arr[mid] = _b[0], arr[high] = _b[1];
+            // CRITICAL: Do NOT increment mid here. 
+            // We need to check the new value we just pulled from the back!
+            high--;
         }
     }
+    return arr;
 }
-// ---------------------------------------------------------------------------------------------------------------------
-var arr012 = [0, 2, 1, 2, 0];
-var arr012Again = [0, 2, 1, 2, 0];
-sort012(arr012);
-sort012Again(arr012Again);
+
+var arr = [0, 2, 1, 2, 0];
+console.log(sort(arr)); // Output: [0, 0, 1, 2, 2]
 
 
 //3. Reverse String
